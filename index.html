@@ -4,24 +4,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpendSense</title>
+    <title>SpendSense - Premium Financial Tracking</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div>
-        <h1>SpendSense</h1>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">SpendSense</div>
+            <button class="btn-account">Account</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1 class="hero-title">
+            <span class="italic">Heading</span> Likh Do<br>
+            Heading ki <span class="italic">dusri</span> line likh do
+        </h1>
+        <div class="hero-buttons">
+            <button class="btn-placeholder"></button>
+            <button class="btn-placeholder"></button>
+        </div>
+    </header>
+
+    <section class="app-screenshots">
+        <div class="screenshots-container">
+            <div class="screenshot-card">App Screenshot</div>
+            <div class="screenshot-card">App Screenshot</div>
+            <div class="screenshot-card">App Screenshot</div>
+        </div>
+    </section>
+
+    <div class="marquee-section">
+        <div class="marquee-content">
+            <span>A marquee</span>
+            <span>A marquee</span>
+            <span>A marquee</span>
+            <span>A marquee</span>
+            <span>A marquee</span>
+            <span>A marquee</span>
+            <span>A marquee</span>
+            <span>A marquee</span>
+            <span>A marquee</span>
+            <span>A marquee</span>
+            <span>A marquee</span>
+            <span>A marquee</span>
+        </div>
     </div>
-    <div>
-        <form action="">
-            <label for="amount">Amount</label>
-            <input type="number" id="amount" name="amount">
-            <label for="category">Category</label>
-            <input type="text" id="category" name="category">
-            <label for="description">Description</label>
-            <input type="text" id="description" name="description">
-            <button type="submit">Add Expense</button>
-        </form>
-    </div>
+
+    <section class="about-section">
+        <div class="about-header">
+            <a href="#" class="about-link">Wanna know more about us?</a>
+        </div>
+        <p class="about-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing<br>
+            elit, sed do eiusmod tempor incididunt ut labore et<br>
+            dolore magna aliqua. Ut enim ad minim veniam,<br>
+            quis nostrud exercitation ullamco laboris nisi ut<br>
+            aliquip ex ea commodo consequat. Duis aute irure<br>
+            dolor in reprehenderit in voluptate velit esse cillum<br>
+            dolore eu fugiat nulla pariatur.
+        </p>
+        <button class="fab-button" aria-label="Action"></button>
+    </section>
+
+    <section class="features-section">
+        <h2 class="section-title">What you'll get</h2>
+        <div class="features-grid">
+            <div class="feature-box"></div>
+            <div class="feature-box"></div>
+            <div class="feature-box"></div>
+            <div class="feature-box"></div>
+            <div class="feature-box"></div>
+            <div class="feature-box"></div>
+        </div>
+    </section>
 </body>
 
 </html>
