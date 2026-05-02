@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Summary - SpendSense AI</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="ambient-background">
+        <canvas id="particle-canvas"></canvas>
+        <div class="color-blob blob-blue"></div>
+        <div class="color-blob blob-pink"></div>
+    </div>
+
+    <nav class="internal-nav">
+        <a href="index.html" class="logo">SpendSense</a>
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="payment.html">Pay</a>
+            <a href="ai_chat.html">AI Chat</a>
+            <a href="profile.html">Profile</a>
+        </div>
+    </nav>
+
+    <div class="app-container">
+        <h2 class="page-title">AI Spending Summary</h2>
+        <p style="color: #a6a6a6; margin-bottom: 30px;">Insights based on your spending in October 2023.</p>
+
+        <div class="summary-card">
+            <h3>🤖 AI Insight: Dining Out</h3>
+            <p style="color: #e6e6e6; line-height: 1.6;">You've spent $450 on dining this month, which is 20% higher
+                than last month. Consider cooking at home a few more nights to stay within your $400 goal.</p>
+            <div class="progress-bar">
+                <div class="progress-fill"
+                    style="width: 112%; background: linear-gradient(to right, #ff6b6b, #851f68);"></div>
+            </div>
+            <div
+                style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 1rem; color: #a6a6a6;">
+                <span>$450 spent</span>
+                <span>$400 goal</span>
+            </div>
+        </div>
+
+        <div class="summary-card">
+            <h3>🤖 AI Insight: Subscriptions</h3>
+            <p style="color: #e6e6e6; line-height: 1.6;">You have 3 inactive subscriptions costing you $45/month. Would
+                you like me to cancel them for you?</p>
+            <button class="btn-account" style="margin-top: 15px; padding: 8px 16px;">Review Subscriptions</button>
+        </div>
+
+        <div class="grid-menu" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="menu-item" style="cursor: default; transform: none; background-color: rgba(0,0,0,0.5);">
+                <div style="font-size: 2rem; font-weight: 600; margin-bottom: 5px;">$2,140</div>
+                <div style="color: #a6a6a6; font-size: 0.9rem;">Total Spent</div>
+            </div>
+            <div class="menu-item" style="cursor: default; transform: none; background-color: rgba(0,0,0,0.5);">
+                <div style="font-size: 2rem; font-weight: 600; margin-bottom: 5px; color: #51cf66;">$4,200</div>
+                <div style="color: #a6a6a6; font-size: 0.9rem;">Total Income</div>
+            </div>
+            <div class="menu-item" style="cursor: default; transform: none; background-color: rgba(0,0,0,0.5);">
+                <div style="font-size: 2rem; font-weight: 600; margin-bottom: 5px;">48%</div>
+                <div style="color: #a6a6a6; font-size: 0.9rem;">Savings Rate</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="particles.js"></script>
+</body>
+
+</html>

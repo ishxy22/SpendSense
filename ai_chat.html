@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat - SpendSense AI</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="ambient-background">
+        <canvas id="particle-canvas"></canvas>
+        <div class="color-blob blob-blue"></div>
+        <div class="color-blob blob-pink"></div>
+    </div>
+
+    <nav class="internal-nav">
+        <a href="index.html" class="logo">SpendSense</a>
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="payment.html">Pay</a>
+            <a href="ai_chat.html" class="active">AI Chat</a>
+            <a href="profile.html">Profile</a>
+        </div>
+    </nav>
+
+    <div class="app-container" style="max-width: 700px;">
+        <h2 class="page-title">SpendSense AI Assistant</h2>
+
+        <div class="chat-container">
+            <div class="chat-messages">
+                <div class="message ai">
+                    Hello John! I'm your SpendSense AI. I can help you analyze your spending, make payments, or manage
+                    your budget. How can I help you today?
+                </div>
+                <div class="message user">
+                    How much did I spend on groceries this month?
+                </div>
+                <div class="message ai">
+                    You've spent $345.50 on groceries so far this October. This is 10% less than your average over the
+                    last 3 months. Great job staying on budget!
+                </div>
+                <div class="message user">
+                    Can you send $50 to Alice for dinner?
+                </div>
+                <div class="message ai">
+                    <p style="margin-bottom: 10px;">I can help with that. I will draft a payment of $50.00 to @alice.
+                    </p>
+                    <div
+                        style="background-color: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; border: 1px solid #404040;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                            <span>To: @alice</span>
+                            <span style="font-weight: bold;">$50.00</span>
+                        </div>
+                        <button class="btn-primary" style="padding: 8px 16px; font-size: 0.2rem;"
+                            onclick="alert('Payment Sent!')">Confirm Payment</button>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="chat-input"
+                    placeholder="Ask about your spending or say 'Send $20 to Mike'...">
+                <button class="btn-send">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="particles.js"></script>
+</body>
+
+</html>
