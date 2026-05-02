@@ -48,41 +48,18 @@ class MainActivity : ComponentActivity() {
 fun LandingScreen(modifier: Modifier = Modifier) {
     val scrollState = rememberScrollState()
 
-    // --- INFINITE ALTERNATING SCREEN GLOW ---
-    val infiniteTransition = rememberInfiniteTransition(label = "screen_glow")
+    // --- INFINITE EDGE GLOW ANIMATION ---
+    val infiniteTransition = rememberInfiniteTransition(label = "edge_glow")
     
-    // Blue fades in and out (Seconds 0 to 4)
-    val blueAlpha by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 0f,
+    // Both edges breathe perfectly in sync
+    val edgeAlpha by infiniteTransition.animateFloat(
+        initialValue = 0.2f,
+        targetValue = 0.5f,
         animationSpec = infiniteRepeatable(
-            animation = keyframes {
-                durationMillis = 8000
-                0f at 0 // Start invisible
-                0.5f at 2000 // Blue peaks at 50% opacity (Visible but not overpowering)
-                0f at 4000 // Fades out completely by 4 seconds
-                0f at 8000 // Stays invisible while pink plays
-            },
-            repeatMode = RepeatMode.Restart
+            animation = tween(3000, easing = FastOutSlowInEasing),
+            repeatMode = RepeatMode.Reverse
         ),
-        label = "blue_alpha"
-    )
-
-    // Pink fades in and out (Seconds 4 to 8)
-    val pinkAlpha by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 0f,
-        animationSpec = infiniteRepeatable(
-            animation = keyframes {
-                durationMillis = 8000
-                0f at 0 // Stays invisible while blue plays
-                0f at 4000 // Starts fading in at 4 seconds
-                0.5f at 6000 // Pink peaks at 50% opacity
-                0f at 8000 // Fades out completely by 8 seconds
-            },
-            repeatMode = RepeatMode.Restart
-        ),
-        label = "pink_alpha"
+        label = "edge_alpha"
     )
 
     // We use a Box here like a RelativeLayout so we can layer the glows BEHIND the scrollable content
@@ -91,31 +68,35 @@ fun LandingScreen(modifier: Modifier = Modifier) {
             .fillMaxSize()
             .background(BackgroundColor)
     ) {
-        // --- AMBIENT FULL-SCREEN GLOWS ---
+        // --- AMBIENT EDGE GLOWS ---
         
-        // Full screen blue glow (Radial from center so it looks like a soft ambient light)
+        // Left Edge Glow (Blue)
         Box(
             modifier = Modifier
-                .fillMaxSize()
+                .align(Alignment.CenterStart)
+                .fillMaxHeight()
+                .fillMaxWidth(0.5f) // Spans 60% of the screen width to fade out smoothly
                 .background(
-                    brush = Brush.radialGradient(
+                    brush = Brush.horizontalGradient(
                         colors = listOf(
-                            AccentBlue.copy(alpha = blueAlpha),
+                            AccentBlue.copy(alpha = edgeAlpha),
                             Color.Transparent
                         )
                     )
                 )
         )
         
-        // Full screen pink glow (Radial from center)
+        // Right Edge Glow (Pink)
         Box(
             modifier = Modifier
-                .fillMaxSize()
+                .align(Alignment.CenterEnd)
+                .fillMaxHeight()
+                .fillMaxWidth(0.5f)
                 .background(
-                    brush = Brush.radialGradient(
+                    brush = Brush.horizontalGradient(
                         colors = listOf(
-                            AccentPink.copy(alpha = pinkAlpha),
-                            Color.Transparent
+                            Color.Transparent,
+                            AccentPink.copy(alpha = edgeAlpha)
                         )
                     )
                 )
