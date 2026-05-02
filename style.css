@@ -14,8 +14,11 @@
     box-sizing: border-box;
 }
 
-body {
+html {
     background-color: var(--bg-color);
+}
+
+body {
     color: var(--text-color);
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -280,4 +283,52 @@ h1, h2, .logo, .italic, .about-text, .screenshot-card {
     .features-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Ambient Background Effect */
+.ambient-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.color-blob {
+    position: absolute;
+    filter: blur(150px);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.5s ease-out, transform 0.8s ease-out;
+}
+
+.blob-blue {
+    bottom: -20%;
+    left: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(29,15,99,0.8) 0%, rgba(13,6,46,0.3) 70%, transparent 100%);
+    transform: translateY(200px);
+}
+
+.blob-pink {
+    bottom: -20%;
+    right: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(133,31,104,0.8) 0%, rgba(66,15,52,0.3) 70%, transparent 100%);
+    transform: translateY(200px);
+}
+
+#particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
 }
