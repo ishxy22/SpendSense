@@ -6,6 +6,179 @@
     <title>Register - SpendSense AI</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
+    <style>
+        .glass-container {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .stepper {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .stepper::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+        
+        .step {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #a6a6a6;
+            font-size: 0.85rem;
+        }
+
+        .step.active {
+            color: #fff;
+        }
+
+        .step-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #2a2a2a;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .step.active .step-circle {
+            background: linear-gradient(135deg, #851f68, #1d0f63);
+            border-color: transparent;
+            color: #fff;
+        }
+
+        .step.completed .step-circle {
+            background: #851f68;
+            border-color: transparent;
+            color: #fff;
+        }
+        
+        .form-section {
+            display: none;
+            animation: fadeIn 0.4s;
+        }
+        
+        .form-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            transition: all 0.2s;
+            flex: 1;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-primary {
+            flex: 1;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .checkbox-group input {
+            accent-color: #851f68;
+            width: 16px;
+            height: 16px;
+        }
+
+        .checkbox-group label {
+            color: #a6a6a6;
+            font-size: 0.9rem;
+        }
+
+        .business-fields {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .business-fields.active {
+            display: block;
+        }
+
+        .internal-nav {
+            border-bottom: none;
+            background: transparent;
+            padding: 20px;
+        }
+        
+        .internal-nav .logo {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e6e6e6;
+        }
+
+        select.form-input {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px top 50%;
+            background-size: 12px auto;
+        }
+        
+        select.form-input option {
+            background-color: #2a2a2a;
+            color: #fff;
+        }
+
+        @media (max-width: 480px) {
+            .glass-container {
+                padding: 25px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="ambient-background">
@@ -18,30 +191,187 @@
         <a href="index.html" class="logo">SpendSense</a>
     </nav>
 
-    <div class="app-container" style="max-width: 400px; margin-top: 80px;">
-        <h2 class="page-title" style="text-align: center;">Create Account</h2>
-        <div style="background-color: rgba(0,0,0,0.5); padding: 30px; border-radius: 12px; border: 1px solid #333;">
-            <div class="form-group">
-                <label class="form-label">Full Name</label>
-                <input type="text" class="form-input" placeholder="John Doe">
+    <div class="app-container" style="max-width: 500px; margin-top: 20px;">
+        <h2 class="page-title" style="text-align: center;">Join SpendSense</h2>
+        
+        <div class="glass-container">
+            <!-- Stepper -->
+            <div class="stepper">
+                <div class="step active" id="step-indicator-1">
+                    <div class="step-circle">1</div>
+                    <span>Basics</span>
+                </div>
+                <div class="step" id="step-indicator-2">
+                    <div class="step-circle">2</div>
+                    <span>Security</span>
+                </div>
+                <div class="step" id="step-indicator-3">
+                    <div class="step-circle">3</div>
+                    <span>Financials</span>
+                </div>
             </div>
-            <div class="form-group">
-                <label class="form-label">Email Address</label>
-                <input type="email" class="form-input" placeholder="john@example.com">
-            </div>
-            <div class="form-group">
-                <label class="form-label">Password</label>
-                <input type="password" class="form-input" placeholder="••••••••">
-            </div>
-            <a href="home.html" style="text-decoration: none;">
-                <button class="btn-primary" style="margin-top: 10px;">Join SpendSense</button>
-            </a>
-            <p style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: #a6a6a6;">
-                Already have an account? <a href="#" style="color: #fff;">Sign In</a>
+
+            <form id="onboarding-form" onsubmit="event.preventDefault(); window.location.href='home.html';">
+                
+                <!-- Step 1: Basics -->
+                <div class="form-section active" id="step-1">
+                    <div class="form-group">
+                        <label class="form-label" for="fullName">Full Name</label>
+                        <input type="text" id="fullName" class="form-input" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="dob">Date of Birth</label>
+                        <input type="date" id="dob" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-input" placeholder="+1 (555) 000-0000" required>
+                    </div>
+                    <div class="btn-group">
+                        <div style="flex: 1"></div>
+                        <button type="button" class="btn-primary" onclick="nextStep(2)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Security -->
+                <div class="form-section" id="step-2">
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email Address</label>
+                        <input type="email" id="email" class="form-input" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="password">Password</label>
+                        <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" class="form-input" placeholder="••••••••" required>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn-secondary" onclick="prevStep(1)">Back</button>
+                        <button type="button" class="btn-primary" onclick="nextStep(3)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Financials -->
+                <div class="form-section" id="step-3">
+                    <div class="form-group">
+                        <label class="form-label" for="incomeSource">Primary Income Source</label>
+                        <select id="incomeSource" class="form-input" required>
+                            <option value="" disabled selected>Select income source</option>
+                            <option value="salary">Salary</option>
+                            <option value="freelance">Freelance / Contract</option>
+                            <option value="business">Business Revenue</option>
+                            <option value="investments">Investments</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="budget">Monthly Budget Goal ($)</label>
+                        <input type="number" id="budget" class="form-input" placeholder="5000" required>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="isBusiness" onchange="toggleBusinessFields()">
+                        <label for="isBusiness">Register as Business</label>
+                    </div>
+
+                    <div class="business-fields" id="businessFields">
+                        <div class="form-group">
+                            <label class="form-label" for="companyName">Company Name</label>
+                            <input type="text" id="companyName" class="form-input" placeholder="Acme Corp">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="industry">Industry</label>
+                            <input type="text" id="industry" class="form-input" placeholder="Technology">
+                        </div>
+                    </div>
+
+                    <div class="checkbox-group" style="margin-top: 20px;">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I agree to the Terms of Service and Privacy Policy</label>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn-secondary" onclick="prevStep(2)">Back</button>
+                        <button type="submit" class="btn-primary">Join SpendSense</button>
+                    </div>
+                </div>
+
+            </form>
+
+            <p style="text-align: center; margin-top: 25px; font-size: 0.9rem; color: #a6a6a6;">
+                Already have an account? <a href="payment.html" style="color: #fff; text-decoration: underline;">Sign In</a>
             </p>
         </div>
     </div>
 
+    <script>
+        function nextStep(step) {
+            // Very simple validation (browser built-in)
+            const currentSection = document.querySelector('.form-section.active');
+            const inputs = currentSection.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+            inputs.forEach(input => {
+                if (!input.checkValidity()) {
+                    input.reportValidity();
+                    isValid = false;
+                }
+            });
+
+            if (!isValid && step > Array.from(document.querySelectorAll('.form-section')).indexOf(currentSection) + 1) {
+                return;
+            }
+
+            document.querySelectorAll('.form-section').forEach(el => el.classList.remove('active'));
+            document.getElementById('step-' + step).classList.add('active');
+            
+            document.querySelectorAll('.step').forEach((el, index) => {
+                if(index < step - 1) {
+                    el.classList.add('completed');
+                    el.classList.remove('active');
+                } else if(index === step - 1) {
+                    el.classList.add('active');
+                    el.classList.remove('completed');
+                } else {
+                    el.classList.remove('active');
+                    el.classList.remove('completed');
+                }
+            });
+        }
+
+        function prevStep(step) {
+            document.querySelectorAll('.form-section').forEach(el => el.classList.remove('active'));
+            document.getElementById('step-' + step).classList.add('active');
+            
+            document.querySelectorAll('.step').forEach((el, index) => {
+                if(index < step - 1) {
+                    el.classList.add('completed');
+                    el.classList.remove('active');
+                } else if(index === step - 1) {
+                    el.classList.add('active');
+                    el.classList.remove('completed');
+                } else {
+                    el.classList.remove('active');
+                    el.classList.remove('completed');
+                }
+            });
+        }
+
+        function toggleBusinessFields() {
+            const isChecked = document.getElementById('isBusiness').checked;
+            const fields = document.getElementById('businessFields');
+            if (isChecked) {
+                fields.classList.add('active');
+                document.getElementById('companyName').required = true;
+                document.getElementById('industry').required = true;
+            } else {
+                fields.classList.remove('active');
+                document.getElementById('companyName').required = false;
+                document.getElementById('industry').required = false;
+            }
+        }
+    </script>
     <script src="particles.js"></script>
 </body>
 </html>
